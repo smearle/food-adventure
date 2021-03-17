@@ -1,0 +1,4 @@
+name,english,finnish
+# This is a comment line,,
+scene1,You have [inv.sword] swords!,Sinulla on [inv.sword] miekkaa!
+scene2,Something fishy is going on! I read somewhere that '[file scene1]',Jotain kalaisaa on tekeillä! Luin jostain että '[file scene1]'
