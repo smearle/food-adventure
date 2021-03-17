@@ -1342,6 +1342,8 @@ class SceneManager {
     // Load the new scene
     Util.checkFormat(sceneNames,'string');
     let scene = this.findSceneByName(Parser.selectRandomOption(sceneNames));
+    console.log("load scene");
+    console.log(scene);
     this.setupScene(scene);
     return scene;
   }
