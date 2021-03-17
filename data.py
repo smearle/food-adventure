@@ -31,26 +31,32 @@ for code, c_name in countries.items():
 new_scenes = []
 
 for code, c_name in countries.items():
-    choices = copy.deepcopy(choices)
-    choices.append({
+    travel_choices = copy.deepcopy(choices)
+    travel_choices.append({
         'name': 'trade_{}'.format(code),
         'text': 'Trade with {}'.format(c_name),
         'nextScene': 'trade_{}'.format(code),
     })
+    country_scene = copy.deepcopy(old_scene)
+    country_scene.update({
+        'name': code,
+        'text': c_name,
+        'choices': travel_choices,
+    })
+    new_scenes.append(country_scene)
+
+    trade_choices = [{
+        'name': 'travel',
+        'text': 'Return to travel',
+        'nextScene': code,
+        }]
     trade_scene = copy.deepcopy(old_scene)
     trade_scene.update({
         'name': 'trade_{}'.format(code),
         'text': "Trading with {}".format(c_name),
-        'choices': choices
+        'choices': trade_choices
     })
     new_scenes.append(trade_scene)
-
-    country_scene = copy.deepcopy(old_scene)
-    country_scene['name'] = code
-    country_scene['text'] = c_name
-    country_scene['choices'] = choices
-    new_scenes.append(country_scene)
-
 
 new_game['scenes'] = new_scenes
 
