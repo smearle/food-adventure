@@ -19,7 +19,7 @@ with open('data/countries.json') as f:
    countries = json.load(f)
 
 def parse_name_str(str):
-    return str.replace(' ','_').replace(',','_').replace('(','_')
+    return str.replace(' ','_').replace(',','_').replace('(','_').replace(')', '_')
 
 dists_dict_df = pandas.read_csv('data/country_distances.csv', header=None)
 dists_df = pandas.read_csv('data/distance-matrix.csv', header=0)
@@ -47,11 +47,11 @@ np.random.shuffle(items)
 # In case we want to limit number of items in the game
 #items = items[:]
 
-items_inventory.append(
-    {'name': 'money',
-     'value': 100000000,
-     'hidden': False,}
-)
+#items_inventory.append(
+#    {'name': 'money',
+#     'value': 100000000,
+#     'hidden': False,}
+#)
 
 for i in items:
 
@@ -90,6 +90,12 @@ for code, c_name in countries.items():
     })
 
 new_scenes = []
+
+new_scenes.append(
+    {'name': 'start',
+     'text': 'Welcome, spice trudger. Where shall we embark today? Intercontinental travel may be unavailable due to maintenance in the global spanning tree. Please eat a balanced diet!',
+     'choices': choices}
+)
 
 new_game['settings']['scrollSettings'] = {'defaultScrollSpeed': 0}
 
@@ -233,7 +239,7 @@ for code, c_name in countries.items():
     })
     new_scenes.append(trade_scene)
 
-np.random.shuffle(new_scenes)
+#np.random.shuffle(new_scenes)
 new_game['scenes'] = new_scenes
 
 with open('novel/novel.json', 'w') as f:
